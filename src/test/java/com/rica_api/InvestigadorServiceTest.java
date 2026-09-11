@@ -6,11 +6,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.rica.ricaapi.CorreoDuplicadoException;
-import com.rica.ricaapi.Investigador;
-import com.rica.ricaapi.InvestigadorRepository;
-import com.rica.ricaapi.InvestigadorService;
-import com.rica.ricaapi.RecursoNoEncontradoException;
+import com.rica.ricaapi.compartido.RecursoNoEncontradoException;
+import com.rica.ricaapi.investigadores.CorreoDuplicadoException;
+import com.rica.ricaapi.investigadores.Investigador;
+import com.rica.ricaapi.investigadores.InvestigadorRepository;
+import com.rica.ricaapi.investigadores.InvestigadorService;
 
 import java.util.Optional;
 

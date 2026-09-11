@@ -1,4 +1,4 @@
-package com.rica.ricaapi;
+package com.rica.ricaapi.investigadores;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

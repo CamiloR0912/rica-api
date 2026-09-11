@@ -1,4 +1,4 @@
-package com.rica.ricaapi;
+package com.rica.ricaapi.compartido;
 
 public class RecursoNoEncontradoException extends RuntimeException {
 
