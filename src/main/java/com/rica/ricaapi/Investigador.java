@@ -1,4 +1,4 @@
-package com.rica_api;
+package com.rica.ricaapi;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

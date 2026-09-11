@@ -1,4 +1,4 @@
-package com.rica_api;
+package com.rica.ricaapi;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -6,6 +6,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import com.rica.ricaapi.CorreoDuplicadoException;
+import com.rica.ricaapi.Investigador;
+import com.rica.ricaapi.InvestigadorRepository;
+import com.rica.ricaapi.InvestigadorService;
+import com.rica.ricaapi.RecursoNoEncontradoException;
+
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;

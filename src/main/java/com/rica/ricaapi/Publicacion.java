@@ -1,23 +1,31 @@
-package com.rica_api;
+package com.rica.ricaapi;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Map;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+@Document(collection = "publicaciones")
+public class Publicacion {
 
-public class PublicacionResponse {
+    @Id
+    private String id;
 
-    @NotBlank
     private String investigadorCorreo;
-    @NotBlank
     private String titulo;
-    @NotBlank
     private String tipo;
-    @NotNull
     private Integer anio;
     private Map<String, String> detalles;
 
-    public PublicacionResponse() {
+    public Publicacion() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getInvestigadorCorreo() {
@@ -59,4 +67,5 @@ public class PublicacionResponse {
     public void setDetalles(Map<String, String> detalles) {
         this.detalles = detalles;
     }
+
 }
