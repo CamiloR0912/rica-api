@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.rica.ricaapi.investigadores.CorreoDuplicadoException;
+import com.rica.ricaapi.publicaciones.LimiteAnualExcedidoException;
 
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
@@ -23,6 +24,16 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(CorreoDuplicadoException.class)
     public ResponseEntity<Map<String, Object>> manejarCorreoDuplicado(CorreoDuplicadoException ex) {
         return construirRespuesta(HttpStatus.CONFLICT, ex.getMessage());
+    }
+
+    @ExceptionHandler(LimiteAnualExcedidoException.class)
+    public ResponseEntity<Map<String, Object>> manejarLimiteAnualExcedido(LimiteAnualExcedidoException ex) {
+        return construirRespuesta(HttpStatus.CONFLICT, ex.getMessage());
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<Map<String, Object>> manejarIllegalArgument(IllegalArgumentException ex) {
+        return construirRespuesta(HttpStatus.BAD_REQUEST, ex.getMessage());
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
