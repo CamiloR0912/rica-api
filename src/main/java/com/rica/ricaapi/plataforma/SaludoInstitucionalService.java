@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 public class SaludoInstitucionalService {
 
     public String mensajeDeBienvenida() {
-        return "RICA está en línea - Red de Investigación y Colaboración Académica.";
+        return "RICA está en línea — Red de Investigación y Colaboración Académica.";
     }
 
 }

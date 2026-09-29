@@ -1,13 +1,12 @@
 package com.rica.ricaapi.compartido;
 
+import com.rica.ricaapi.investigadores.dominio.CorreoDuplicadoException;
+import com.rica.ricaapi.publicaciones.LimiteAnualExcedidoException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-
-import com.rica.ricaapi.investigadores.CorreoDuplicadoException;
-import com.rica.ricaapi.publicaciones.LimiteAnualExcedidoException;
 
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
@@ -31,16 +30,11 @@ public class GlobalExceptionHandler {
         return construirRespuesta(HttpStatus.CONFLICT, ex.getMessage());
     }
 
-    @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<Map<String, Object>> manejarIllegalArgument(IllegalArgumentException ex) {
-        return construirRespuesta(HttpStatus.BAD_REQUEST, ex.getMessage());
-    }
-
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, Object>> manejarValidacion(MethodArgumentNotValidException ex) {
         Map<String, String> errores = new LinkedHashMap<>();
-        ex.getBindingResult().getFieldErrors()
-                .forEach(error -> errores.put(error.getField(), error.getDefaultMessage()));
+        ex.getBindingResult().getFieldErrors().forEach(error ->
+                errores.put(error.getField(), error.getDefaultMessage()));
 
         Map<String, Object> cuerpo = new LinkedHashMap<>();
         cuerpo.put("timestamp", LocalDateTime.now());

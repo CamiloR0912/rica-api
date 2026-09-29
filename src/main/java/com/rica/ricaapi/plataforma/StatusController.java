@@ -12,7 +12,8 @@ public class StatusController {
     public Map<String, String> status() {
         return Map.of(
                 "proyecto", "RICA",
-                "estado", "operativo");
+                "estado", "operativo"
+        );
     }
 
 }

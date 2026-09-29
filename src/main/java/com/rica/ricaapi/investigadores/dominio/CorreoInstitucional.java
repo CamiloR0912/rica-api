@@ -1,4 +1,4 @@
-package com.rica.ricaapi.investigadores;
+package com.rica.ricaapi.investigadores.dominio;
 
 import jakarta.persistence.Embeddable;
 
@@ -11,5 +11,4 @@ public record CorreoInstitucional(String valor) {
                     "El correo institucional debe pertenecer al dominio @uptc.edu.co");
         }
     }
-
 }

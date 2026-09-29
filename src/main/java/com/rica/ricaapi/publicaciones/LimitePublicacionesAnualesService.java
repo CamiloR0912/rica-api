@@ -1,6 +1,5 @@
 package com.rica.ricaapi.publicaciones;
 
-import com.rica.ricaapi.investigadores.Investigador;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,9 +13,8 @@ public class LimitePublicacionesAnualesService {
         this.publicacionRepository = publicacionRepository;
     }
 
-    public boolean puedeRegistrar(Investigador investigador, Publicacion nueva) {
-        long registradasEsteAnio = publicacionRepository.countByInvestigadorCorreoAndAnio(
-                investigador.getCorreoInstitucional().valor(), nueva.getAnio());
+    public boolean puedeRegistrar(String investigadorCorreo, Integer anio) {
+        long registradasEsteAnio = publicacionRepository.countByInvestigadorCorreoAndAnio(investigadorCorreo, anio);
         return registradasEsteAnio < MAXIMO_POR_ANIO;
     }
 

@@ -1,20 +1,24 @@
 package com.rica.ricaapi.publicaciones;
 
-import java.util.Map;
-
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.Map;
+
 public class PublicacionRequest {
 
-    @NotBlank
+    @NotBlank(message = "El correo del investigador es obligatorio")
     private String investigadorCorreo;
-    @NotBlank
+
+    @NotBlank(message = "El título es obligatorio")
     private String titulo;
-    @NotBlank
+
+    @NotBlank(message = "El tipo de publicación es obligatorio (articulo, libro o ponencia)")
     private String tipo;
-    @NotNull
+
+    @NotNull(message = "El año es obligatorio")
     private Integer anio;
+
     private Map<String, String> detalles;
 
     public PublicacionRequest() {
@@ -59,4 +63,5 @@ public class PublicacionRequest {
     public void setDetalles(Map<String, String> detalles) {
         this.detalles = detalles;
     }
+
 }

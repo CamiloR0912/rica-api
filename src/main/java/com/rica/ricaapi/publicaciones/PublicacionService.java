@@ -1,10 +1,8 @@
 package com.rica.ricaapi.publicaciones;
 
-import org.springframework.stereotype.Service;
-
 import com.rica.ricaapi.compartido.RecursoNoEncontradoException;
-import com.rica.ricaapi.investigadores.Investigador;
-import com.rica.ricaapi.investigadores.InvestigadorRepository;
+import com.rica.ricaapi.investigadores.infraestructura.salida.persistencia.InvestigadorRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -16,23 +14,23 @@ public class PublicacionService {
     private final LimitePublicacionesAnualesService limitePublicacionesAnualesService;
 
     public PublicacionService(PublicacionRepository publicacionRepository,
-            InvestigadorRepository investigadorRepository,
-            LimitePublicacionesAnualesService limitePublicacionesAnualesService) {
+                               InvestigadorRepository investigadorRepository,
+                               LimitePublicacionesAnualesService limitePublicacionesAnualesService) {
         this.publicacionRepository = publicacionRepository;
         this.investigadorRepository = investigadorRepository;
         this.limitePublicacionesAnualesService = limitePublicacionesAnualesService;
     }
 
     public Publicacion registrar(Publicacion publicacion) {
-        Investigador investigador = investigadorRepository.findByCorreoInstitucional_Valor(publicacion.getInvestigadorCorreo())
-                .orElseThrow(() -> new RecursoNoEncontradoException(
-                        "No existe un investigador con correo " + publicacion.getInvestigadorCorreo()));
-
-        if (!limitePublicacionesAnualesService.puedeRegistrar(investigador, publicacion)) {
-            throw new LimiteAnualExcedidoException(
-                    "El investigador ha superado el límite máximo de publicaciones para el año " + publicacion.getAnio());
+        if (!investigadorRepository.existsByCorreoInstitucional_Valor(publicacion.getInvestigadorCorreo())) {
+            throw new RecursoNoEncontradoException(
+                    "No existe un investigador con correo " + publicacion.getInvestigadorCorreo());
         }
-
+        if (!limitePublicacionesAnualesService.puedeRegistrar(publicacion.getInvestigadorCorreo(), publicacion.getAnio())) {
+            throw new LimiteAnualExcedidoException(
+                    "El investigador " + publicacion.getInvestigadorCorreo()
+                            + " ya alcanzó el máximo de publicaciones registradas para " + publicacion.getAnio());
+        }
         return publicacionRepository.save(publicacion);
     }
 

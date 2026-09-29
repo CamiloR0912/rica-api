@@ -2,22 +2,33 @@ package com.rica.ricaapi.publicaciones;
 
 import java.util.Map;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-
 public class PublicacionResponse {
 
-    @NotBlank
+    private String id;
     private String investigadorCorreo;
-    @NotBlank
     private String titulo;
-    @NotBlank
     private String tipo;
-    @NotNull
     private Integer anio;
     private Map<String, String> detalles;
 
     public PublicacionResponse() {
+    }
+
+    public PublicacionResponse(String id, String investigadorCorreo, String titulo, String tipo, Integer anio, Map<String, String> detalles) {
+        this.id = id;
+        this.investigadorCorreo = investigadorCorreo;
+        this.titulo = titulo;
+        this.tipo = tipo;
+        this.anio = anio;
+        this.detalles = detalles;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getInvestigadorCorreo() {
@@ -59,4 +70,5 @@ public class PublicacionResponse {
     public void setDetalles(Map<String, String> detalles) {
         this.detalles = detalles;
     }
+
 }
